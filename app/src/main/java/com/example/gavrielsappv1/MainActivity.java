@@ -2,6 +2,7 @@ package com.example.gavrielsappv1;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -29,15 +30,16 @@ public class MainActivity extends AppCompatActivity {
         passwordInput = findViewById(R.id.editText2);
         login = findViewById(R.id.button);
 
+
         usernames = new String[5];
         passwords = new String[5];
         usernames[0] = "bruh";
         passwords[0] = "bruh";
 
-        login.setOnClickListener(new View.OnClickListener(){
+        login.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v){
-                if(usernames != null || passwords != null) {
+            public void onClick(View v) {
+                if (usernames != null || passwords != null) {
                     Boolean didGetIn = false;
                     for (Integer i = 0; i < usernames.length; i++) {
                         if (usernameInput.getText().toString().equals(usernames[i]) && passwordInput.getText().toString().equals(passwords[i])) {
@@ -47,11 +49,12 @@ public class MainActivity extends AppCompatActivity {
                     }
                     if (didGetIn.equals(true)) {
                         bah.setText("wellcome");
+                        Intent myIntent = new Intent(MainActivity.this, TaskList.class);
+                        MainActivity.this.startActivity(myIntent);
                     } else {
                         bah.setText("try again");
                     }
-                }
-                else{
+                } else {
                     bah.setText("error array empty or missing");
                 }
             }
