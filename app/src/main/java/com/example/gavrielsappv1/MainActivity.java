@@ -4,8 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -13,7 +11,7 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
-    TextView bah;
+    TextView loginResult;
     EditText usernameInput;
     EditText passwordInput;
     Button login;
@@ -25,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        bah = findViewById(R.id.textView);
+        loginResult = findViewById(R.id.textView);
         usernameInput = findViewById(R.id.editText);
         passwordInput = findViewById(R.id.editText2);
         login = findViewById(R.id.button);
@@ -48,14 +46,14 @@ public class MainActivity extends AppCompatActivity {
                         }
                     }
                     if (didGetIn.equals(true)) {
-                        bah.setText("wellcome");
+                        loginResult.setText("welcome");
                         Intent myIntent = new Intent(MainActivity.this, TaskList.class);
                         MainActivity.this.startActivity(myIntent);
                     } else {
-                        bah.setText("try again");
+                        loginResult.setText("try again");
                     }
                 } else {
-                    bah.setText("error array empty or missing");
+                    loginResult.setText("error array empty or missing");
                 }
             }
         });

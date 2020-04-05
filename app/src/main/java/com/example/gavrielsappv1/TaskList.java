@@ -1,6 +1,7 @@
 package com.example.gavrielsappv1;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -19,8 +20,6 @@ import java.util.List;
 public class TaskList extends AppCompatActivity {
 
     ArrayList<Task> taskList = new ArrayList<>();
-    final ListView lv = (ListView) findViewById(R.id.TaskListView);
-    taskListAdapter adapter = new taskListAdapter(this, R.layout.adaper_view_layout, taskList);
 
 
     @Override
@@ -37,13 +36,19 @@ public class TaskList extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
 
-        lv.setAdapter(taskListAdapter);
-        populateList();
+        taskList.add(new Task("lol","XD"));
+        taskList.add(new Task("lol2","XD"));
+
+        taskListAdapter adapter = new taskListAdapter(this, taskList);
+        final ListView lv = (ListView) findViewById(R.id.TaskListView);
+        lv.setAdapter(adapter);
+        //populateList();
+
     }
 
-    protected void populateList() {
-        for (Integer i = 0; i < 10; i++) {
-            taskList.add(new Task(i.toString(),i.toString()));
-        }
-    }
+   // protected void populateList() {
+   //     for (Integer i = 0; i < 10; i++) {
+   //         taskList.add(new Task(i.toString(),i.toString()));
+   //     }
+   // }
 }

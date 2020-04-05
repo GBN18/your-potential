@@ -1,48 +1,49 @@
 package com.example.gavrielsappv1;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
 import android.widget.TextView;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 
 import com.example.gavrielsappv1.entity.Task;
 
 import java.util.ArrayList;
-import java.util.List;
 
-public class taskListAdapter extends ArrayAdapter<Task> {
-    private static final String TAG = "taskListAdapter";
-    private Context mContext;
-    int mResource;
+public class taskListAdapter extends BaseAdapter {
 
-    public taskListAdapter(@NonNull Context context, int resource, @NonNull ArrayList<Task> objects, Context mContext) {
-        super(context, resource, objects);
-        this.mContext = context;
-        mResource = resource;
+    private ArrayList<Task> taskList;
+    private LayoutInflater inflter;
+
+    taskListAdapter(Context applicationContext, ArrayList<Task> taskList) {
+        this.taskList = taskList;
+        inflter = (LayoutInflater.from(applicationContext));
     }
 
-    @NonNull
     @Override
-    public View getDropDownView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-        String name = getItem(position).getName();
-        String description = getItem(position).getDescription();
+    public int getCount() {
+        return taskList.size();
+    }
 
-        Task task = new Task(name, description);
+    @Override
+    public Task getItem(int position) {
+        return taskList.get(position);
+    }
 
-        LayoutInflater inflater = LayoutInflater.from(mContext);
-        convertView = inflater.inflate(mResource, parent, false);
+    @Override
+    public long getItemId(int position) {
+        return taskList.get(position).getID();
+    }
 
-        TextView tvName = (TextView) convertView.findViewById(R.id.tvName);
-        TextView tvDescription = (TextView) convertView.findViewById(R.id.tvDescription);
-
-        tvName.setText(name);
-        tvDescription.setText(description);
-
-        return convertView;
+    @Override
+    public View getView(int position, View convertView, ViewGroup parent) {
+        View view = inflter.inflate(R.layout.adaper_view_layout, null);
+        TextView name = (TextView) view.findViewById(R.id.tvName);
+        name.setText(this.getItem(position).getName());
+        TextView description = (TextView) view.findViewById(R.id.tvDescription);
+        description.setText(this.getItem(position).getDescription());
+        return view;
     }
 }
