@@ -19,9 +19,6 @@ import java.util.List;
 
 public class TaskList extends AppCompatActivity {
 
-    ArrayList<Task> taskList = new ArrayList<>();
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,20 +32,5 @@ public class TaskList extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
-
-        taskList.add(new Task("lol","XD"));
-        taskList.add(new Task("lol2","XD"));
-
-        taskListAdapter adapter = new taskListAdapter(this, taskList);
-        final ListView lv = (ListView) findViewById(R.id.TaskListView);
-        lv.setAdapter(adapter);
-        //populateList();
-
     }
-
-   // protected void populateList() {
-   //     for (Integer i = 0; i < 10; i++) {
-   //         taskList.add(new Task(i.toString(),i.toString()));
-   //     }
-   // }
 }

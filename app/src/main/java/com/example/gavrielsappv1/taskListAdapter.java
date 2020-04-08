@@ -17,7 +17,7 @@ public class taskListAdapter extends BaseAdapter {
     private ArrayList<Task> taskList;
     private LayoutInflater inflter;
 
-    taskListAdapter(Context applicationContext, ArrayList<Task> taskList) {
+    public taskListAdapter(Context applicationContext, ArrayList<Task> taskList) {
         this.taskList = taskList;
         inflter = (LayoutInflater.from(applicationContext));
     }

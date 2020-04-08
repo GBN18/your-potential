@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
@@ -13,23 +14,28 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.example.gavrielsappv1.R;
+import com.example.gavrielsappv1.entity.Task;
+import com.example.gavrielsappv1.taskListAdapter;
+
+import java.util.ArrayList;
 
 public class HomeFragment extends Fragment {
 
     private HomeViewModel homeViewModel;
 
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
-        homeViewModel =
-                ViewModelProviders.of(this).get(HomeViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_home, container, false);
-        final TextView textView = root.findViewById(R.id.text_home);
-        homeViewModel.getText().observe(this, new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });
-        return root;
+    ArrayList<Task> taskList = new ArrayList<>();
+
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        homeViewModel = ViewModelProviders.of(this).get(HomeViewModel.class);
+        View homeView = inflater.inflate(R.layout.fragment_home, container, false);
+        final TextView textView = homeView.findViewById(R.id.text_home);
+
+        taskList.add(new Task("lol","XD"));
+        taskList.add(new Task("lol2","XD"));
+        taskListAdapter adapter = new taskListAdapter(homeView.getContext(), taskList);
+        final ListView lv = (ListView) homeView.findViewById(R.id.TaskListView);
+        lv.setAdapter(adapter);
+
+        return homeView;
     }
 }
