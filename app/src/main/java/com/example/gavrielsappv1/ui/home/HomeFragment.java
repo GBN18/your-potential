@@ -28,7 +28,6 @@ public class HomeFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         homeViewModel = ViewModelProviders.of(this).get(HomeViewModel.class);
         View homeView = inflater.inflate(R.layout.fragment_home, container, false);
-        final TextView textView = homeView.findViewById(R.id.text_home);
 
         taskList.add(new Task("lol","XD"));
         taskList.add(new Task("lol2","XD"));

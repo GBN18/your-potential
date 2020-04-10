@@ -33,6 +33,8 @@ public class MainActivity extends AppCompatActivity {
         passwords = new String[5];
         usernames[0] = "bruh";
         passwords[0] = "bruh";
+        usernames[1] = "";
+        passwords[1] = "";
 
         login.setOnClickListener(new View.OnClickListener() {
             @Override
