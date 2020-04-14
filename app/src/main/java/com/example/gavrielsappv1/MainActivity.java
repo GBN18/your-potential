@@ -1,7 +1,5 @@
 package com.example.gavrielsappv1;
-
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -40,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (usernames != null || passwords != null) {
+                    loginResult.setVisibility(View.VISIBLE);
                     Boolean didGetIn = false;
                     for (Integer i = 0; i < usernames.length; i++) {
                         if (usernameInput.getText().toString().equals(usernames[i]) && passwordInput.getText().toString().equals(passwords[i])) {
@@ -55,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
                         loginResult.setText("try again");
                     }
                 } else {
+                    loginResult.setVisibility(View.VISIBLE);
                     loginResult.setText("error array empty or missing");
                 }
             }

@@ -13,8 +13,8 @@
 
     <fragment
         android:id="@+id/navigation_dashboard"
-        android:name="com.example.gavrielsappv1.ui.dashboard.AddGoalFragment"
-        android:label="@string/title_dashboard"
+        android:name="com.example.gavrielsappv1.ui.addGoal.AddGoalFragment"
+        android:label="@string/title_add_goal"
         tools:layout="@layout/fragment_add_goal" />
 
     <fragment

@@ -1,15 +1,14 @@
 package com.example.gavrielsappv1.entity;
-
 import java.util.Random;
 
 public class Task {
     private Long id;
     private String name;
     private String description;
-    private Integer date;
+    private String date;
     private Integer mod;
 
-    public Task(String name, String description, Integer date, Integer mod) {
+    public Task(String name, String description, String date, Integer mod) {
         this.name = name;
         this.description = description;
         this.id = new Random().nextLong();
@@ -37,11 +36,11 @@ public class Task {
         this.description = description;
     }
 
-    public Integer getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Integer date) {
+    public void setDate(String date) {
         this.date = date;
     }
 

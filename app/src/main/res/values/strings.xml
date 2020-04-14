@@ -2,6 +2,6 @@
     <string name="app_name">gavriels app v1</string>
     <string name="title_activity_task_list">TaskList</string>
     <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
+    <string name="title_add_goal">Add Goal</string>
     <string name="title_notifications">Notifications</string>
 </resources>

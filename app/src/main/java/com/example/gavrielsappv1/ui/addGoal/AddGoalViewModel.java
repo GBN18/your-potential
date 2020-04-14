@@ -1,4 +1,4 @@
-package com.example.gavrielsappv1.ui.dashboard;
+package com.example.gavrielsappv1.ui.addGoal;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;

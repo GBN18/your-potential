@@ -1,17 +1,15 @@
 package com.example.gavrielsappv1;
-
 import android.os.Bundle;
+import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
-
 import com.example.gavrielsappv1.entity.Task;
 import com.example.gavrielsappv1.entity.TaskList;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-
 
 public class TaskListView extends AppCompatActivity {
 
@@ -31,14 +29,14 @@ public class TaskListView extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
 
-        taskList.addTask(new Task("lol", "XD", 111, 0));
-        taskList.addTask(new Task("lol2", "XD", 222, 0));
+        taskList.addTask(new Task("lol", "XD", "111", 0));
+        taskList.addTask(new Task("lol2", "XD", "222", 0));
     }
 
     public TaskList getTaskList() {
         return this.taskList;
     }
-    public void add(String name,String description,int mod,int date) {
-        taskList.add(name, description, mod, date);
+    public void add(String name,String description,String date,int mod) {
+        taskList.add(name, description, date, mod);
     }
 }

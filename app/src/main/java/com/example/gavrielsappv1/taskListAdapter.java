@@ -1,5 +1,6 @@
 package com.example.gavrielsappv1;
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,9 +39,20 @@ public class taskListAdapter extends BaseAdapter {
         TextView name = (TextView) view.findViewById(R.id.tvName);
         TextView description = (TextView) view.findViewById(R.id.tvDescription);
         TextView date = (TextView) view.findViewById(R.id.tvDate);
+        int mods = this.getItem(position).getMod();
         name.setText(this.getItem(position).getName());
         description.setText(this.getItem(position).getDescription());
-        date.setText(this.getItem(position).getDate().toString());
+        switch (mods) {
+            case 0:
+                date.setText("until: "+this.getItem(position).getDate().toString());
+                break;
+            case 1:
+                date.setText("on: "+this.getItem(position).getDate().toString());
+                break;
+            case 2:
+                date.setVisibility(View.GONE);
+                break;
+        }
         return view;
     }
 }

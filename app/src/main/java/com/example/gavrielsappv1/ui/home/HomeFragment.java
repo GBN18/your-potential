@@ -21,7 +21,7 @@ public class HomeFragment extends Fragment {
 
         final TaskList list = ((TaskListView)getActivity()).getTaskList();
         taskListAdapter adapter = new taskListAdapter(homeView.getContext(), list);
-        final ListView lv = (ListView) homeView.findViewById(R.id.TaskListView);
+        final ListView lv = homeView.findViewById(R.id.TaskListView);
         lv.setAdapter(adapter);
 
         return homeView;

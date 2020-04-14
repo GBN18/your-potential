@@ -1,4 +1,5 @@
-package com.example.gavrielsappv1.ui.dashboard;
+package com.example.gavrielsappv1.ui.addGoal;
+
 import android.app.DatePickerDialog;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -10,9 +11,11 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
+
 import com.example.gavrielsappv1.R;
 import com.example.gavrielsappv1.TaskListView;
 
@@ -29,6 +32,7 @@ public class AddGoalFragment extends Fragment {
     TextView addDate;
     DatePickerDialog.OnDateSetListener mDateSetListener;
     int mods = 0;
+    String dates = "0/0/0";
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         addGoalViewModel = ViewModelProviders.of(this).get(AddGoalViewModel.class);
@@ -44,13 +48,11 @@ public class AddGoalFragment extends Fragment {
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!addName.getText().toString().matches("")&&!addDescription.getText().toString().matches(""))
-                    if(mods!=2){
-                        ((TaskListView)getActivity()).add(addName.getText().toString(),addDescription.getText().toString(),mods,Integer.parseInt(addDate.getText().toString()));
-                    }else{
-                        ((TaskListView)getActivity()).add(addName.getText().toString(),addDescription.getText().toString(),mods,-1);
-                    }
-
+                if (!addName.getText().toString().matches("") && !addDescription.getText().toString().matches(""))
+                    if (mods != 2)
+                        ((TaskListView) getActivity()).add(addName.getText().toString(), addDescription.getText().toString(), dates, mods);
+                    else
+                        ((TaskListView) getActivity()).add(addName.getText().toString(), addDescription.getText().toString(), "-1", mods);
             }
         });
         modButton.setOnClickListener(new View.OnClickListener() {
@@ -72,7 +74,6 @@ public class AddGoalFragment extends Fragment {
                 int year = cal.get(Calendar.YEAR);
                 int month = cal.get(Calendar.MONTH);
                 int day = cal.get(Calendar.DAY_OF_MONTH);
-
                 DatePickerDialog dialog = new DatePickerDialog(root.getContext(), android.R.style.Theme_Holo_Light_Dialog_MinWidth, mDateSetListener, year, month, day);
                 dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 dialog.show();
@@ -82,8 +83,9 @@ public class AddGoalFragment extends Fragment {
             @Override
             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
                 month++;
-                String date = month + "/" + day + "/" + year;
-                addDate.setText(date);
+
+                dates = day + "/" + month + "/" + year;
+                addDate.setText(dates);
             }
         };
 
@@ -97,12 +99,12 @@ public class AddGoalFragment extends Fragment {
                 addDate.setVisibility(View.VISIBLE);
                 break;
             case 1:
-                TVMod.setText("in Date:");
+                TVMod.setText("on Date:");
                 addDate.setVisibility(View.VISIBLE);
                 break;
             case 2:
                 TVMod.setText("unlimited:");
-                addDate.setVisibility(View.INVISIBLE);
+                addDate.setVisibility(View.GONE);
                 break;
         }
     }

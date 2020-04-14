@@ -29,7 +29,7 @@ public class TaskList {
         return this.tasks.get(position);
     }
 
-    public void add(String name,String description,int mod,int date) {
+    public void add(String name,String description,String date,int mod) {
         this.tasks.add(new Task(name,description,date,mod));
     }
 }
