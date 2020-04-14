@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                     if (didGetIn.equals(true)) {
                         loginResult.setText("welcome");
-                        Intent myIntent = new Intent(MainActivity.this, TaskList.class);
+                        Intent myIntent = new Intent(MainActivity.this, TaskListView.class);
                         MainActivity.this.startActivity(myIntent);
                     } else {
                         loginResult.setText("try again");

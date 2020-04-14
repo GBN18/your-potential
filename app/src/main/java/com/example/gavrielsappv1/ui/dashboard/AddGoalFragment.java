@@ -1,5 +1,4 @@
 package com.example.gavrielsappv1.ui.dashboard;
-
 import android.app.DatePickerDialog;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -11,12 +10,11 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
-
 import com.example.gavrielsappv1.R;
+import com.example.gavrielsappv1.TaskListView;
 
 import java.util.Calendar;
 
@@ -26,6 +24,7 @@ public class AddGoalFragment extends Fragment {
     EditText addName;
     EditText addDescription;
     Button modButton;
+    Button addButton;
     TextView TVMod;
     TextView addDate;
     DatePickerDialog.OnDateSetListener mDateSetListener;
@@ -37,11 +36,23 @@ public class AddGoalFragment extends Fragment {
         addName = root.findViewById(R.id.addName);
         addDescription = root.findViewById(R.id.addDescription);
         modButton = root.findViewById(R.id.modButton);
+        addButton = root.findViewById(R.id.addButton);
         TVMod = root.findViewById(R.id.TVMod);
         addDate = root.findViewById(R.id.addDate);
 
         setMod();
+        addButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(!addName.getText().toString().matches("")&&!addDescription.getText().toString().matches(""))
+                    if(mods!=2){
+                        ((TaskListView)getActivity()).add(addName.getText().toString(),addDescription.getText().toString(),mods,Integer.parseInt(addDate.getText().toString()));
+                    }else{
+                        ((TaskListView)getActivity()).add(addName.getText().toString(),addDescription.getText().toString(),mods,-1);
+                    }
 
+            }
+        });
         modButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

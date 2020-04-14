@@ -1,12 +1,6 @@
 package com.example.gavrielsappv1;
 
 import android.os.Bundle;
-import android.util.Log;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
-
-import com.example.gavrielsappv1.entity.Task;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
@@ -14,10 +8,14 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.example.gavrielsappv1.entity.Task;
+import com.example.gavrielsappv1.entity.TaskList;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class TaskList extends AppCompatActivity {
+
+public class TaskListView extends AppCompatActivity {
+
+    TaskList taskList = new TaskList();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,5 +30,15 @@ public class TaskList extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
+
+        taskList.addTask(new Task("lol", "XD", 111, 0));
+        taskList.addTask(new Task("lol2", "XD", 222, 0));
+    }
+
+    public TaskList getTaskList() {
+        return this.taskList;
+    }
+    public void add(String name,String description,int mod,int date) {
+        taskList.add(name, description, mod, date);
     }
 }
